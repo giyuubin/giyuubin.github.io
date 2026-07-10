@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -21,13 +20,11 @@
     <a href="#" class="nav-brand">~/giyuubin</a>
     <div class="nav-links">
       <a href="#about">about</a>
-      <a href="#abstract">abstract</a>
       <a href="#stack">stack</a>
       <a href="#research">research</a>
       <a href="#now">now</a>
       <a href="#past">past</a>
       <a href="#beyond">beyond</a>
-      <a href="#refs">refs</a>
       <a href="#contact">contact</a>
     </div>
     <a class="nav-gh" href="https://github.com/giyuubin" target="_blank" rel="noopener">github&nbsp;↗</a>
@@ -53,25 +50,8 @@
     </div>
   </header>
 
-  <section class="section" id="abstract">
-    <div class="paper">
-      <div class="paper-label">Abstract</div>
-      <p>
-        This page documents ongoing coursework and undergraduate research in applied cryptography,
-        centered on the algebraic hardness assumptions underlying post-quantum key-encapsulation and
-        signature schemes — ML-KEM and ML-DSA — and their transition path from classical public-key
-        primitives. Work is carried out as an undergraduate researcher at the Information Security and
-        Privacy Lab (ISPL), Gachon University.
-      </p>
-      <p class="keywords">
-        <b>Keywords —</b> lattice-based cryptography, learning with errors, ML-KEM / ML-DSA,
-        hash-based signatures, applied cryptography
-      </p>
-    </div>
-  </section>
-
   <section class="section" id="stack">
-    <h2><span class="section-num">§1</span><span class="prompt">$</span> ls skills/</h2>
+    <h2><span class="prompt">$</span> ls skills/</h2>
     <div class="card">
       <h3 class="card-label">Languages</h3>
       <div class="tags">
@@ -88,18 +68,11 @@
   </section>
 
   <section class="section" id="research">
-    <h2><span class="section-num">§2</span><span class="prompt">$</span> cat research_interests.md</h2>
+    <h2><span class="prompt">$</span> cat research_interests.md</h2>
     <div class="grid-2">
       <div class="card">
         <h3>Post-Quantum Cryptography (PQC)</h3>
         <p>Lattice-based schemes, ML-KEM / ML-DSA, hash-based signatures.</p>
-        <div class="def-box">
-          <span class="def-label">Def. 1 — Search-LWE</span>
-          <p>
-            $$\text{Given } (A,\ \mathbf{b} = A\mathbf{s} + \mathbf{e}) \in \mathbb{Z}_q^{m\times n} \times \mathbb{Z}_q^m,\ \text{find } \mathbf{s}.$$
-          </p>
-        </div>
-        <p>Conjectured hard even for quantum adversaries; the basis for ML-KEM and ML-DSA.</p>
       </div>
       <div class="card">
         <h3>Trustworthy AI Security</h3>
@@ -109,7 +82,7 @@
   </section>
 
   <section class="section" id="now">
-    <h2><span class="section-num">§3</span><span class="prompt">$</span> ps aux | grep working_on</h2>
+    <h2><span class="prompt">$</span> ps aux | grep working_on</h2>
     <div class="card">
       <h3>Lab Activity — Undergraduate Researcher @ <a href="https://isnpl.github.io/" target="_blank" rel="noopener">ISPL</a></h3>
       <ul class="list">
@@ -118,21 +91,6 @@
           — lattice-based cryptography, Kyber &amp; Dilithium, and hash-based signature schemes —
           following Prof. Alfred Menezes' <em>Cryptography 101</em> series, after completing a seminar on
           <a href="https://github.com/giyuubin/Modern-Cryptography" target="_blank" rel="noopener">Modern Cryptography</a>.
-          <ul class="syllabus">
-            <li>
-              <span class="course-name"><span class="status status-active">● active</span>Lattice-Based Cryptography</span>
-              <span class="course-meta">7 lectures — SIS / LWE / Module-LWE</span>
-            </li>
-            <li>
-              <span class="course-name"><span class="status status-pending">○ queued</span>Kyber &amp; Dilithium</span>
-              <span class="course-meta">4 lectures — ML-KEM / ML-DSA</span>
-            </li>
-            <li>
-              <span class="course-name"><span class="status status-pending">○ queued</span>Hash-Based Signatures</span>
-              <span class="course-meta">6 lectures — LMS / XMSS / SLH-DSA</span>
-            </li>
-          </ul>
-          <p class="syllabus-target">target completion: 2026-10-01 · 17 lectures total</p>
         </li>
         <li>
           Participating in <em>Development of Trustworthy Agentic AI Technologies for the Trust AI Ecosystem</em>,
@@ -144,7 +102,7 @@
   </section>
 
   <section class="section" id="past">
-    <h2><span class="section-num">§4</span><span class="prompt">$</span> ls past_projects/</h2>
+    <h2><span class="prompt">$</span> ls past_projects/</h2>
     <div class="card">
       <h3><a href="https://github.com/giyuubin/ML-Based-Static-API-Malware-Detection-System" target="_blank" rel="noopener">ML-Based Malware Detection</a></h3>
       <p>Lightweight static pre-filter that classifies PE files via IAT-based features. <span class="dim">(AI Programming coursework, Gachon University)</span></p>
@@ -159,7 +117,7 @@
   </section>
 
   <section class="section" id="beyond">
-    <h2><span class="section-num">§5</span><span class="prompt">$</span> cat beyond_security.md</h2>
+    <h2><span class="prompt">$</span> cat beyond_security.md</h2>
     <div class="card">
       <p>Occasionally builds small tools outside of security, like
         <a href="https://github.com/giyuubin/Dodecaphonism" target="_blank" rel="noopener">Dodecaphonism</a>,
@@ -168,36 +126,9 @@
   </section>
 
   <section class="section" id="goals">
-    <h2><span class="section-num">§6</span><span class="prompt">$</span> cat goals.md</h2>
+    <h2><span class="prompt">$</span> cat goals.md</h2>
     <div class="card">
       <p>Aspiring to contribute to research institutes like <strong>ETRI</strong>.</p>
-    </div>
-  </section>
-
-  <section class="section" id="refs">
-    <h2><span class="prompt">$</span> cat references.bib</h2>
-    <div class="card">
-      <pre class="bib"><span class="bk">@techreport{fips203,</span>
-  <span class="bf">title</span>  = <span class="bv">{Module-Lattice-Based Key-Encapsulation Mechanism Standard}</span>,
-  <span class="bf">author</span> = <span class="bv">{National Institute of Standards and Technology}</span>,
-  <span class="bf">number</span> = <span class="bv">{FIPS 203}</span>, <span class="bf">year</span> = <span class="bv">{2024}</span>
-<span class="bk">}</span>
-<span class="bk">@techreport{fips204,</span>
-  <span class="bf">title</span>  = <span class="bv">{Module-Lattice-Based Digital Signature Standard}</span>,
-  <span class="bf">author</span> = <span class="bv">{National Institute of Standards and Technology}</span>,
-  <span class="bf">number</span> = <span class="bv">{FIPS 204}</span>, <span class="bf">year</span> = <span class="bv">{2024}</span>
-<span class="bk">}</span>
-<span class="bk">@techreport{fips205,</span>
-  <span class="bf">title</span>  = <span class="bv">{Stateless Hash-Based Digital Signature Standard}</span>,
-  <span class="bf">author</span> = <span class="bv">{National Institute of Standards and Technology}</span>,
-  <span class="bf">number</span> = <span class="bv">{FIPS 205}</span>, <span class="bf">year</span> = <span class="bv">{2024}</span>
-<span class="bk">}</span>
-<span class="bk">@misc{menezes101,</span>
-  <span class="bf">title</span>  = <span class="bv">{Cryptography 101}</span>,
-  <span class="bf">author</span> = <span class="bv">{Menezes, Alfred}</span>,
-  <span class="bf">note</span>   = <span class="bv">{Lecture series, University of Waterloo}</span>,
-  <span class="bf">url</span>    = <span class="bv">{https://cryptography101.ca}</span>
-<span class="bk">}</span></pre>
     </div>
   </section>
 
@@ -211,17 +142,5 @@
 
 </main>
 
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body, {
-        delimiters: [{ left: "$$", right: "$$", display: true }],
-        throwOnError: false
-      });
-    }
-  });
-</script>
 </body>
 </html>
