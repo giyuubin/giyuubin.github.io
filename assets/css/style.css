@@ -187,6 +187,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .list li { margin-bottom: 12px; }
 .list li:last-child { margin-bottom: 0; }
+.list .list { margin-top: 8px; }
 
 /* Tags */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
