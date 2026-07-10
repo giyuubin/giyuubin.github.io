@@ -8,7 +8,6 @@
 ![C](https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=white)
 
 **Security & Cryptography**
-![Cryptography](https://img.shields.io/badge/Cryptography-Security-red?style=flat-square)
 ![PQC](https://img.shields.io/badge/Post--Quantum%20Crypto-Lattice%20%2F%20Kyber%20%2F%20Dilithium-8A2BE2?style=flat-square)
 
 ### 📚 Research Interests
