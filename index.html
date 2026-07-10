@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+  } catch (e) {}
+})();
+</script>
 <title>Kyubin Park — Security &amp; PQC</title>
 <meta name="description" content="Kyubin Park — Smart Security student at Gachon University, working on Post-Quantum Cryptography and trustworthy AI security.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
@@ -29,6 +39,7 @@
       <a href="#goals">goals</a>
       <a href="#contact">contact</a>
     </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">theme: <span id="themeToggleLabel">auto</span></button>
     <a class="nav-gh" href="https://github.com/giyuubin" target="_blank" rel="noopener">github&nbsp;↗</a>
   </div>
 </nav>
@@ -151,10 +162,43 @@
     <div class="card">
       <p>📫 <a href="mailto:giyuubin@gachon.ac.kr">giyuubin@gachon.ac.kr</a></p>
     </div>
-    <p class="foot-note dim">built with plain HTML/CSS · <a href="https://github.com/giyuubin/giyuubin.github.io" target="_blank" rel="noopener">source</a></p>
+    <p class="foot-note dim">built with plain HTML/CSS/JS · <a href="https://github.com/giyuubin/giyuubin.github.io" target="_blank" rel="noopener">source</a></p>
   </footer>
 
 </main>
+
+<script>
+(function () {
+  var order = ['auto', 'light', 'dark'];
+  var btn = document.getElementById('themeToggle');
+  var label = document.getElementById('themeToggleLabel');
+
+  function current() {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (e) {}
+    return 'auto';
+  }
+
+  function apply(mode) {
+    if (mode === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', mode);
+    }
+    label.textContent = mode;
+  }
+
+  apply(current());
+
+  btn.addEventListener('click', function () {
+    var next = order[(order.indexOf(current()) + 1) % order.length];
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    apply(next);
+  });
+})();
+</script>
 
 </body>
 </html>
