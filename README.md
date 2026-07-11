@@ -34,9 +34,6 @@ Aspiring to contribute to research institutes like **ETRI**.
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![C](https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=white)
 
-**Security & Cryptography**
-![PQC](https://img.shields.io/badge/Post--Quantum%20Crypto-Lattice%20%2F%20Kyber%20%2F%20Dilithium-8A2BE2?style=flat-square)
-
 **Tools**
 ![VSCode](https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter%20Notebook-F37626?style=flat-square&logo=jupyter&logoColor=white)
