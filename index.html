@@ -63,18 +63,12 @@
 
   <section class="section" id="research">
     <h2><span class="prompt">$</span> cat research.md</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Post-Quantum Cryptography (PQC)</h3>
-        <p>Lattice-based schemes, ML-KEM / ML-DSA, hash-based signatures.</p>
-      </div>
-      <div class="card">
-        <h3>Trustworthy AI Security</h3>
-        <p>Reliability and safety of autonomous AI systems — verifiable identity, authentication, and data trust for agentic settings.</p>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Lab Activity — Undergraduate Researcher @ <a href="https://isnpl.github.io/" target="_blank" rel="noopener">ISPL</a></h3>
+    <!-- Synced from github.com/giyuubin/giyuubin README.md at runtime (see sync script below).
+         This markup is the static fallback shown if the fetch fails or JS is disabled. -->
+    <div class="card" id="research-dynamic">
+      <p><strong>Post-Quantum Cryptography (PQC):</strong> lattice-based schemes, ML-KEM/ML-DSA, hash-based signatures</p>
+      <p><strong>Trustworthy AI Security:</strong> reliability and safety of autonomous AI systems</p>
+      <p><strong>Lab Activity — Undergraduate Researcher at <a href="https://isnpl.github.io/" target="_blank" rel="noopener">Information Security and Privacy Lab (ISPL)</a>:</strong></p>
       <ul class="list">
         <li>
           Running a seminar on <a href="https://github.com/giyuubin/PQC" target="_blank" rel="noopener">Post-Quantum Cryptography</a>
@@ -90,6 +84,7 @@
           autonomous AI agents and multi-agent systems
         </li>
       </ul>
+      <p>Aspiring to contribute to research institutes like <strong>ETRI</strong>.</p>
     </div>
   </section>
 
@@ -135,7 +130,7 @@
 
   <footer class="section" id="contact">
     <h2><span class="prompt">$</span> mail -s "hello"</h2>
-    <div class="card">
+    <div class="card" id="contact-dynamic">
       <p>📫 <a href="mailto:giyuubin@gachon.ac.kr">giyuubin@gachon.ac.kr</a></p>
     </div>
     <p class="foot-note dim">built with plain HTML/CSS/JS · <a href="https://github.com/giyuubin/giyuubin.github.io" target="_blank" rel="noopener">source</a></p>
@@ -173,6 +168,58 @@
     try { localStorage.setItem('theme', next); } catch (e) {}
     apply(next);
   });
+})();
+</script>
+
+<!-- Single source of truth: Research and Contact are authored once in
+     github.com/giyuubin/giyuubin's README.md and pulled in here at load time,
+     so updating that README also updates this page. If the fetch fails
+     (offline, rate-limited, JS disabled), the static markup above stays. -->
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script>
+(function () {
+  var README_URL = 'https://raw.githubusercontent.com/giyuubin/giyuubin/main/README.md';
+
+  function extractSection(markdown, heading) {
+    var lines = markdown.split('\n');
+    var start = lines.findIndex(function (line) { return line.trim() === heading; });
+    if (start === -1) return null;
+    var end = lines.findIndex(function (line, i) { return i > start && line.trim() === '---'; });
+    if (end === -1) end = lines.length;
+    return lines.slice(start + 1, end).join('\n').trim();
+  }
+
+  function extractContactEmail(markdown) {
+    var match = markdown.match(/^📫\s*\*\*Contact:\*\*\s*(\S+)/m);
+    return match ? match[1].trim() : null;
+  }
+
+  function markListsStyled(container) {
+    container.querySelectorAll('ul').forEach(function (ul) { ul.classList.add('list'); });
+  }
+
+  fetch(README_URL)
+    .then(function (res) {
+      if (!res.ok) throw new Error('README fetch failed: ' + res.status);
+      return res.text();
+    })
+    .then(function (markdown) {
+      var researchMd = extractSection(markdown, '### 🔭 Research');
+      var researchEl = document.getElementById('research-dynamic');
+      if (researchMd && researchEl && window.marked) {
+        researchEl.innerHTML = marked.parse(researchMd);
+        markListsStyled(researchEl);
+      }
+
+      var email = extractContactEmail(markdown);
+      var contactEl = document.getElementById('contact-dynamic');
+      if (email && contactEl) {
+        contactEl.innerHTML = '<p>📫 <a href="mailto:' + email + '">' + email + '</a></p>';
+      }
+    })
+    .catch(function (err) {
+      console.warn('README sync skipped, showing static fallback:', err);
+    });
 })();
 </script>
 
