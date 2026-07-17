@@ -257,8 +257,14 @@
 <script>
 (function () {
   var nav = document.querySelector('.nav');
+  var scrollingTimer = null;
   var toggleShadow = function () {
     nav.classList.toggle('is-scrolled', window.scrollY > 4);
+    nav.classList.add('is-scrolling');
+    clearTimeout(scrollingTimer);
+    scrollingTimer = setTimeout(function () {
+      nav.classList.remove('is-scrolling');
+    }, 200);
   };
   toggleShadow();
   window.addEventListener('scroll', toggleShadow, { passive: true });
@@ -267,25 +273,60 @@
   document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
     navLinkByHash[a.getAttribute('href').slice(1)] = a;
   });
+  var navLinkList = Object.values(navLinkByHash);
   var sections = Object.keys(navLinkByHash)
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
 
-  if ('IntersectionObserver' in window && sections.length) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var link = navLinkByHash[entry.target.id];
-        if (!link) return;
-        Object.values(navLinkByHash).forEach(function (a) {
-          a.classList.remove('is-active');
-          a.removeAttribute('aria-current');
-        });
-        link.classList.add('is-active');
-        link.setAttribute('aria-current', 'true');
+  var setActive = function (link) {
+    navLinkList.forEach(function (a) {
+      a.classList.remove('is-active');
+      a.removeAttribute('aria-current');
+    });
+    if (link) {
+      link.classList.add('is-active');
+      link.setAttribute('aria-current', 'true');
+    }
+  };
+
+  if (sections.length) {
+    // "Which section has scrolled past a line near the top of the viewport"
+    // handles short/last sections correctly, unlike a mid-viewport trigger
+    // band that a short section can be scrolled past without ever crossing.
+    // When trailing sections are short, their anchor targets can clamp to the
+    // same max scroll position and become indistinguishable by position alone
+    // (e.g. "stack" and "contact" both landing at document bottom) — so a
+    // direct nav click always wins over scroll-position detection for a bit.
+    var REFERENCE_OFFSET = 140;
+    var ticking = false;
+    var suppressUntil = 0;
+
+    navLinkList.forEach(function (a) {
+      a.addEventListener('click', function () {
+        setActive(a);
+        suppressUntil = Date.now() + 1000;
       });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    sections.forEach(function (section) { observer.observe(section); });
+    });
+
+    var updateActive = function () {
+      ticking = false;
+      if (Date.now() < suppressUntil) return;
+      var current = sections[0];
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top <= REFERENCE_OFFSET) {
+          current = sections[i];
+        }
+      }
+      setActive(navLinkByHash[current.id]);
+    };
+    var onScroll = function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActive);
+      }
+    };
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 })();
 </script>
