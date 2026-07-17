@@ -290,14 +290,15 @@
   };
 
   if (sections.length) {
-    // "Which section has scrolled past a line near the top of the viewport"
-    // handles short/last sections correctly, unlike a mid-viewport trigger
-    // band that a short section can be scrolled past without ever crossing.
-    // When trailing sections are short, their anchor targets can clamp to the
-    // same max scroll position and become indistinguishable by position alone
-    // (e.g. "stack" and "contact" both landing at document bottom) — so a
-    // direct nav click always wins over scroll-position detection for a bit.
-    var REFERENCE_OFFSET = 140;
+    // Trailing sections can be short enough that their anchor targets clamp
+    // to the same max scroll position and never individually reach a fixed
+    // "top of viewport" reference line, so normal scrolling would get stuck
+    // on an earlier section forever. Track whichever section's midpoint is
+    // closest to the viewport's vertical center instead — that adapts to
+    // short sections — and once the page can't scroll any further, just
+    // treat the last section as current (matches the intuitive "reached the
+    // end of the page" expectation). A direct nav click always wins over
+    // scroll-position detection for a moment after the click.
     var ticking = false;
     var suppressUntil = 0;
 
@@ -311,12 +312,24 @@
     var updateActive = function () {
       ticking = false;
       if (Date.now() < suppressUntil) return;
-      var current = sections[0];
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].getBoundingClientRect().top <= REFERENCE_OFFSET) {
-          current = sections[i];
-        }
+
+      var atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+      if (atBottom) {
+        setActive(navLinkList[navLinkList.length - 1]);
+        return;
       }
+
+      var viewportCenter = window.innerHeight / 2;
+      var current = sections[0];
+      var bestDistance = Infinity;
+      sections.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        var distance = Math.abs((rect.top + rect.bottom) / 2 - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          current = section;
+        }
+      });
       setActive(navLinkByHash[current.id]);
     };
     var onScroll = function () {
