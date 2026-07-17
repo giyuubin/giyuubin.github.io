@@ -28,17 +28,23 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-brand">~/giyuubin</a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">about</a>
       <a href="#research">research</a>
       <a href="#projects">projects</a>
       <a href="#stack">stack</a>
       <a href="#contact">contact</a>
     </div>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">theme: <span id="themeToggleLabel">auto</span></button>
-    <a class="nav-gh" href="https://github.com/giyuubin" target="_blank" rel="noopener">github&nbsp;↗</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"><span class="theme-toggle-prefix">theme: </span><span id="themeToggleLabel">auto</span></button>
+    <a class="nav-gh" href="https://github.com/giyuubin" target="_blank" rel="noopener" aria-label="GitHub profile"><span class="nav-gh-label">github&nbsp;</span>↗</a>
   </div>
 </nav>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <main class="container">
 
@@ -148,6 +154,98 @@
     try { localStorage.setItem('theme', next); } catch (e) {}
     apply(next);
   });
+})();
+</script>
+
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var backdrop = document.getElementById('navBackdrop');
+  var themeToggle = document.getElementById('themeToggle');
+  var navGh = document.querySelector('.nav-gh');
+  var scrollY = 0;
+
+  function focusables() {
+    return [toggle]
+      .concat(Array.prototype.slice.call(links.querySelectorAll('a')))
+      .concat([themeToggle, navGh]);
+  }
+
+  function lockScroll() {
+    scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+  }
+
+  function unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  function open() {
+    links.classList.add('is-open');
+    backdrop.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    lockScroll();
+    var firstLink = links.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
+
+  function close(returnFocus) {
+    links.classList.remove('is-open');
+    backdrop.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    unlockScroll();
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', function () {
+    if (links.classList.contains('is-open')) close(true); else open();
+  });
+
+  links.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') close(false);
+  });
+
+  backdrop.addEventListener('click', function () { close(true); });
+
+  document.addEventListener('keydown', function (e) {
+    if (!links.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') {
+      close(true);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      var items = focusables();
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  var desktopMq = window.matchMedia('(min-width: 641px)');
+  var handleDesktopChange = function (e) {
+    if (e.matches && links.classList.contains('is-open')) close(false);
+  };
+  if (desktopMq.addEventListener) {
+    desktopMq.addEventListener('change', handleDesktopChange);
+  } else {
+    desktopMq.addListener(handleDesktopChange);
+  }
 })();
 </script>
 

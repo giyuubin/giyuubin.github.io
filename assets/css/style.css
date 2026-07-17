@@ -57,6 +57,7 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; }
 
 body {
   margin: 0;
@@ -112,6 +113,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav-brand {
   color: var(--accent);
   font-weight: 700;
+  white-space: nowrap;
+  flex: none;
 }
 .nav-links {
   display: flex;
@@ -123,6 +126,40 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav-links a:hover { color: var(--accent-2); }
 .nav-gh { color: var(--text-dim); white-space: nowrap; }
 .nav-gh:hover { color: var(--accent-2); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle-bar {
+  width: 16px;
+  height: 2px;
+  background: var(--text-dim);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle:hover .nav-toggle-bar { background: var(--accent-2); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+}
 
 .theme-toggle {
   font-family: inherit;
@@ -260,6 +297,26 @@ footer.section { border-top: 1px solid var(--border); padding-top: 40px; }
 
 @media (max-width: 640px) {
   .typed { font-size: 24px; }
-  .nav-inner { gap: 14px; }
-  .nav-links { gap: 12px; font-size: 13px; }
+  .nav-inner { gap: 10px; padding: 14px 16px; }
+  .nav-toggle { display: flex; }
+  .theme-toggle { padding: 4px 10px; }
+  .theme-toggle-prefix, .nav-gh-label { display: none; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    font-size: 14px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 20px 12px;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links a { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-backdrop.is-open { display: block; }
 }
