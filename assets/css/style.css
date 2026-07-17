@@ -70,7 +70,8 @@ body {
   line-height: 1.65;
   background-image:
     radial-gradient(circle at 20% 0%, var(--glow-a), transparent 40%),
-    radial-gradient(circle at 80% 10%, var(--glow-b), transparent 40%);
+    radial-gradient(circle at 80% 10%, var(--glow-b), transparent 40%),
+    radial-gradient(ellipse 900px 600px at 50% 0%, var(--glow-a), transparent 70%);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -232,8 +233,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 @media (min-width: 900px) {
   .nav-inner { max-width: 960px; }
-  .nav-links { justify-content: center; }
   .terminal-body { padding: 40px 48px 46px; }
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --glow-a: rgba(167, 139, 250, 0.16);
+    --glow-b: rgba(94, 234, 212, 0.12);
+  }
 }
 
 .line { margin: 6px 0; }
