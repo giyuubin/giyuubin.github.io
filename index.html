@@ -315,8 +315,16 @@
 
       var atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
       if (atBottom) {
-        setActive(navLinkList[navLinkList.length - 1]);
-        return;
+        // On short mobile viewports the page can already be "at bottom" as
+        // soon as an earlier section (e.g. projects/stack) is reached, since
+        // there's little content left below it to scroll through. Only force
+        // the last link active when its section has actually scrolled up
+        // past the viewport's center, i.e. it's what's really being viewed.
+        var lastSection = sections[sections.length - 1];
+        if (lastSection.getBoundingClientRect().top <= window.innerHeight / 2) {
+          setActive(navLinkByHash[lastSection.id]);
+          return;
+        }
       }
 
       var viewportCenter = window.innerHeight / 2;
