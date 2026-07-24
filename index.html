@@ -190,7 +190,10 @@
     document.body.style.left = '';
     document.body.style.right = '';
     document.body.style.paddingRight = '';
-    window.scrollTo(0, scrollY);
+    // html has global scroll-behavior: smooth, which would otherwise animate
+    // this restore from the top down to scrollY. Force it instant so closing
+    // the menu keeps you exactly where you were, with no visible scroll.
+    window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
   }
 
   function open() {
