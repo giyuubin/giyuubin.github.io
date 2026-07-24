@@ -206,6 +206,7 @@
   }
 
   function close(returnFocus) {
+    if (!links.classList.contains('is-open')) return;
     links.classList.remove('is-open');
     backdrop.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
