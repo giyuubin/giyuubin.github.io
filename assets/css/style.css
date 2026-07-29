@@ -131,6 +131,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .nav-links {
   display: flex;
+  justify-content: center;
   gap: 4px;
   flex: 1;
   flex-wrap: wrap;
@@ -348,6 +349,7 @@ footer.section { border-top: 1px solid var(--border); padding-top: 40px; }
     left: 0;
     right: 0;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 0;
     font-size: 14px;
     background: var(--nav-bg);
@@ -356,7 +358,7 @@ footer.section { border-top: 1px solid var(--border); padding-top: 40px; }
     padding: 4px 20px 12px;
   }
   .nav-links.is-open { display: flex; }
-  .nav-links a { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .nav-links a { padding: 10px 0; text-align: center; border-bottom: 1px solid var(--border); }
   .nav-links a:last-child { border-bottom: none; }
   .nav-backdrop.is-open { display: block; }
 }
