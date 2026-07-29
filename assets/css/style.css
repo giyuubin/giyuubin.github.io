@@ -121,6 +121,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   padding: 14px 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
 }
 .nav-brand {
@@ -131,10 +132,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .nav-links {
   display: flex;
-  justify-content: center;
   gap: 4px;
-  flex: 1;
   flex-wrap: wrap;
+}
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
 }
 .nav-links a {
   color: var(--text-dim);
@@ -338,8 +343,16 @@ footer.section { border-top: 1px solid var(--border); padding-top: 40px; }
 
 @media (max-width: 640px) {
   .typed { font-size: 24px; }
-  .nav-inner { gap: 10px; padding: 14px 16px; }
+  .nav-inner { position: relative; gap: 10px; padding: 14px 16px; }
   .nav-toggle { display: flex; }
+  .nav-brand {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+  }
   .theme-toggle { padding: 4px 10px; }
   .theme-toggle-prefix, .nav-gh-label { display: none; }
   .nav-links {
