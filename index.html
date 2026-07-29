@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
+/* Applies the saved theme before first paint. Without this, a dark-mode
+   visitor gets a white flash on every page load. Keep in <head>, inline. */
 (function () {
   try {
     var saved = localStorage.getItem('theme');
@@ -13,402 +15,132 @@
   } catch (e) {}
 })();
 </script>
-<title>Kyubin Park — Security &amp; PQC</title>
-<meta name="description" content="Kyubin Park — Smart Security student at Gachon University, working on Post-Quantum Cryptography and trustworthy AI security.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<title>Kyubin Park</title>
+<meta name="description" content="Kyubin Park — undergraduate researcher at the Information Security and Privacy Lab, Gachon University. Post-quantum cryptography, applied cryptography, and trustworthy AI.">
+<meta name="author" content="Kyubin Park">
+<meta name="theme-color" content="#004e96">
+<link rel="canonical" href="https://giyuubin.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kyubin Park">
+<meta property="og:description" content="Undergraduate researcher at the Information Security and Privacy Lab, Gachon University. Post-quantum cryptography, applied cryptography, and trustworthy AI.">
+<meta property="og:url" content="https://giyuubin.github.io/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23004e96'/%3E%3Ctext x='50' y='68' font-family='Helvetica,Arial,sans-serif' font-size='52' font-weight='700' fill='white' text-anchor='middle'%3EKP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kyubin Park",
+  "url": "https://giyuubin.github.io/",
+  "email": "mailto:giyuubin@gachon.ac.kr",
+  "jobTitle": "Undergraduate Researcher",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Gachon University",
+    "department": "Dept. of Smart Security"
+  },
+  "knowsAbout": [
+    "Post-Quantum Cryptography",
+    "Applied Cryptography",
+    "Trustworthy AI"
+  ],
+  "sameAs": ["https://github.com/giyuubin"]
+}
+</script>
 </head>
 <body>
 
-<div class="scanlines" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand">~/giyuubin</a>
+    <a href="/" class="nav-brand">Kyubin Park</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-controls">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"></button>
+    </div>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
       <span class="nav-toggle-bar"></span>
     </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">about</a>
-      <a href="#research">research</a>
-      <a href="#projects">projects</a>
-      <a href="#stack">stack</a>
-      <a href="#contact">contact</a>
-    </div>
-    <div class="nav-controls">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"><span class="theme-toggle-prefix">theme: </span><span id="themeToggleLabel">auto</span></button>
-      <a class="nav-gh" href="https://github.com/giyuubin" target="_blank" rel="noopener" aria-label="GitHub profile"><span class="nav-gh-label">github&nbsp;</span>↗</a>
-    </div>
   </div>
 </nav>
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
-<main class="container">
+<div class="container">
 
-  <header class="hero" id="about">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-        <span class="terminal-title">guest@giyuubin:~</span>
+  <!-- Filled by assets/js/render.js from assets/data/profile.json -->
+  <header class="hero" id="hero"></header>
+
+  <main id="main">
+
+    <section class="section" id="about">
+      <h2 class="section-title">About</h2>
+      <div class="about-bio" id="about-bio"></div>
+      <div class="about-grid">
+        <div>
+          <h3 class="about-heading">Interests</h3>
+          <ul class="interest-list" id="interests"></ul>
+        </div>
+        <div>
+          <h3 class="about-heading">Education</h3>
+          <div id="education"></div>
+        </div>
       </div>
-      <div class="terminal-body">
-        <p class="line"><span class="prompt">$</span> whoami</p>
-        <h1 class="typed">Kyubin&nbsp;Park</h1>
-        <p class="line dim">🛡️ Smart Security Student @ Gachon University</p>
-        <p class="line"><span class="prompt">$</span> cat mission.txt</p>
-        <p class="line dim">Building towards a trustworthy quantum-safe &amp; AI-safe future.</p>
-        <p class="line blink-cursor"><span class="prompt">$</span> <span class="cursor">&nbsp;</span></p>
-      </div>
-    </div>
-  </header>
+    </section>
 
-  <section class="section" id="research">
-    <h2><span class="prompt">$</span> cat research.md</h2>
-    <!-- Content is fetched at runtime from github.com/giyuubin/giyuubin's README.md
-         (see sync script below). The line below only shows if that fetch fails or JS is disabled. -->
-    <div class="card" id="research-dynamic">
-      <p class="dim">Full research details on my <a href="https://github.com/giyuubin" target="_blank" rel="noopener">GitHub profile</a>.</p>
-    </div>
-  </section>
+    <section class="section" id="news">
+      <h2 class="section-title">News</h2>
+      <ul class="news-list" id="news-list"></ul>
+      <p class="section-more" id="news-more"><a href="/news/">All news &rarr;</a></p>
+    </section>
 
-  <section class="section" id="projects">
-    <h2><span class="prompt">$</span> ls projects/</h2>
-    <div class="card">
-      <h3><a href="https://github.com/giyuubin/ML-Based-Static-API-Malware-Detection-System" target="_blank" rel="noopener">ML-Based Malware Detection</a></h3>
-      <p>Lightweight static pre-filter that classifies PE files via IAT-based features. <span class="dim">(AI Programming coursework, Gachon University)</span></p>
-      <div class="tags">
-        <span class="tag">LightGBM</span>
-        <span class="tag">Flask</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3><a href="https://github.com/giyuubin/Dodecaphonism" target="_blank" rel="noopener">Dodecaphonism</a></h3>
-      <p>A twelve-tone (dodecaphonic) composition helper in Python — a small tool built outside of security work.</p>
-      <div class="tags">
-        <span class="tag tag-accent">side project</span>
-      </div>
-    </div>
-    <div class="card card-ghost">
-      <p class="dim">📁 more write-ups from the lab archive coming soon…</p>
-    </div>
-  </section>
+    <!-- Removed from the DOM, along with its nav link, whenever
+         assets/data/publications.json is empty. -->
+    <section class="section" id="publications">
+      <h2 class="section-title">Publications</h2>
+      <div id="publications-list"></div>
+      <p class="section-more" id="publications-more"><a href="/publications/">All publications &rarr;</a></p>
+    </section>
 
-  <section class="section" id="stack">
-    <h2><span class="prompt">$</span> ls skills/</h2>
-    <div class="card">
-      <h3 class="card-label">Languages</h3>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag">C</span>
-      </div>
-      <h3 class="card-label">Tools</h3>
-      <div class="tags">
-        <span class="tag">VS Code</span>
-        <span class="tag">Jupyter Notebook</span>
-        <span class="tag">Markdown</span>
-        <span class="tag">LaTeX</span>
-      </div>
-    </div>
-  </section>
+    <section class="section" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid" id="projects-list"></div>
+      <p class="section-more" id="projects-more"><a href="/projects/">All projects &rarr;</a></p>
+    </section>
 
-  <footer class="section" id="contact">
-    <h2><span class="prompt">$</span> mail -s "hello"</h2>
-    <div class="card" id="contact-dynamic">
-      <p>📫 <a href="mailto:giyuubin@gachon.ac.kr">giyuubin@gachon.ac.kr</a></p>
-    </div>
-    <p class="foot-note dim">built with plain HTML/CSS/JS · <a href="https://github.com/giyuubin/giyuubin.github.io" target="_blank" rel="noopener">source</a></p>
-  </footer>
+    <section class="section" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <ul class="contact-list" id="contact-list"></ul>
+    </section>
 
-</main>
+  </main>
+</div>
 
-<script>
-(function () {
-  var order = ['auto', 'light', 'dark'];
-  var btn = document.getElementById('themeToggle');
-  var label = document.getElementById('themeToggleLabel');
+<footer class="footer">
+  <div class="container">
+    <span id="footer-line">&copy; Kyubin Park</span> &middot;
+    <a href="https://github.com/giyuubin/giyuubin.github.io" target="_blank" rel="noopener">Source</a>
+  </div>
+</footer>
 
-  function current() {
-    try {
-      var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') return saved;
-    } catch (e) {}
-    return 'auto';
-  }
-
-  function apply(mode) {
-    if (mode === 'auto') {
-      document.documentElement.removeAttribute('data-theme');
-    } else {
-      document.documentElement.setAttribute('data-theme', mode);
-    }
-    label.textContent = mode;
-  }
-
-  apply(current());
-
-  btn.addEventListener('click', function () {
-    var next = order[(order.indexOf(current()) + 1) % order.length];
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    apply(next);
-  });
-})();
-</script>
-
-<script>
-(function () {
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  var backdrop = document.getElementById('navBackdrop');
-  var themeToggle = document.getElementById('themeToggle');
-  var navGh = document.querySelector('.nav-gh');
-  var scrollY = 0;
-
-  function focusables() {
-    return [toggle]
-      .concat(Array.prototype.slice.call(links.querySelectorAll('a')))
-      .concat([themeToggle, navGh]);
-  }
-
-  function lockScroll() {
-    scrollY = window.scrollY;
-    var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.position = 'fixed';
-    document.body.style.top = '-' + scrollY + 'px';
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = scrollbarWidth + 'px';
-    }
-  }
-
-  function unlockScroll() {
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.paddingRight = '';
-    // html has global scroll-behavior: smooth, which would otherwise animate
-    // this restore from the top down to scrollY. Force it instant so closing
-    // the menu keeps you exactly where you were, with no visible scroll.
-    window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
-  }
-
-  function open() {
-    links.classList.add('is-open');
-    backdrop.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    lockScroll();
-    var firstLink = links.querySelector('a');
-    if (firstLink) firstLink.focus();
-  }
-
-  function close(returnFocus) {
-    if (!links.classList.contains('is-open')) return;
-    links.classList.remove('is-open');
-    backdrop.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    unlockScroll();
-    if (returnFocus) toggle.focus();
-  }
-
-  toggle.addEventListener('click', function () {
-    if (links.classList.contains('is-open')) close(true); else open();
-  });
-
-  links.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') close(false);
-  });
-
-  backdrop.addEventListener('click', function () { close(true); });
-
-  document.addEventListener('keydown', function (e) {
-    if (!links.classList.contains('is-open')) return;
-
-    if (e.key === 'Escape') {
-      close(true);
-      return;
-    }
-
-    if (e.key === 'Tab') {
-      var items = focusables();
-      var first = items[0];
-      var last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  });
-
-  var desktopMq = window.matchMedia('(min-width: 641px)');
-  var handleDesktopChange = function (e) {
-    if (e.matches && links.classList.contains('is-open')) close(false);
-  };
-  if (desktopMq.addEventListener) {
-    desktopMq.addEventListener('change', handleDesktopChange);
-  } else {
-    desktopMq.addListener(handleDesktopChange);
-  }
-})();
-</script>
-
-<script>
-(function () {
-  var nav = document.querySelector('.nav');
-  var scrollingTimer = null;
-  var toggleShadow = function () {
-    nav.classList.toggle('is-scrolled', window.scrollY > 4);
-    nav.classList.add('is-scrolling');
-    clearTimeout(scrollingTimer);
-    scrollingTimer = setTimeout(function () {
-      nav.classList.remove('is-scrolling');
-    }, 200);
-  };
-  toggleShadow();
-  window.addEventListener('scroll', toggleShadow, { passive: true });
-
-  var navLinkByHash = {};
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
-    navLinkByHash[a.getAttribute('href').slice(1)] = a;
-  });
-  var navLinkList = Object.values(navLinkByHash);
-  var sections = Object.keys(navLinkByHash)
-    .map(function (id) { return document.getElementById(id); })
-    .filter(Boolean);
-
-  var setActive = function (link) {
-    navLinkList.forEach(function (a) {
-      a.classList.remove('is-active');
-      a.removeAttribute('aria-current');
-    });
-    if (link) {
-      link.classList.add('is-active');
-      link.setAttribute('aria-current', 'true');
-    }
-  };
-
-  if (sections.length) {
-    // Trailing sections can be short enough that their anchor targets clamp
-    // to the same max scroll position and never individually reach a fixed
-    // "top of viewport" reference line, so normal scrolling would get stuck
-    // on an earlier section forever. Track whichever section's midpoint is
-    // closest to the viewport's vertical center instead — that adapts to
-    // short sections — and once the page can't scroll any further, just
-    // treat the last section as current (matches the intuitive "reached the
-    // end of the page" expectation). A direct nav click always wins over
-    // scroll-position detection for a moment after the click.
-    var ticking = false;
-    var suppressUntil = 0;
-
-    navLinkList.forEach(function (a) {
-      a.addEventListener('click', function () {
-        setActive(a);
-        suppressUntil = Date.now() + 1000;
-      });
-    });
-
-    var updateActive = function () {
-      ticking = false;
-      if (Date.now() < suppressUntil) return;
-
-      var atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
-      if (atBottom) {
-        // On short mobile viewports the page can already be "at bottom" as
-        // soon as an earlier section (e.g. projects/stack) is reached, since
-        // there's little content left below it to scroll through. Only force
-        // the last link active when its section has actually scrolled up
-        // past the viewport's center, i.e. it's what's really being viewed.
-        var lastSection = sections[sections.length - 1];
-        if (lastSection.getBoundingClientRect().top <= window.innerHeight / 2) {
-          setActive(navLinkByHash[lastSection.id]);
-          return;
-        }
-      }
-
-      var viewportCenter = window.innerHeight / 2;
-      var current = sections[0];
-      var bestDistance = Infinity;
-      sections.forEach(function (section) {
-        var rect = section.getBoundingClientRect();
-        var distance = Math.abs((rect.top + rect.bottom) / 2 - viewportCenter);
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          current = section;
-        }
-      });
-      setActive(navLinkByHash[current.id]);
-    };
-    var onScroll = function () {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateActive);
-      }
-    };
-    updateActive();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-})();
-</script>
-
-<!-- Single source of truth: Research and Contact are authored once in
-     github.com/giyuubin/giyuubin's README.md and pulled in here at load time,
-     so updating that README also updates this page. If the fetch fails
-     (offline, rate-limited, JS disabled), the static markup above stays. -->
-<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
-<script>
-(function () {
-  var README_URL = 'https://raw.githubusercontent.com/giyuubin/giyuubin/main/README.md';
-
-  function extractSection(markdown, heading) {
-    var lines = markdown.split('\n');
-    var start = lines.findIndex(function (line) { return line.trim() === heading; });
-    if (start === -1) return null;
-    var end = lines.findIndex(function (line, i) { return i > start && line.trim() === '---'; });
-    if (end === -1) end = lines.length;
-    return lines.slice(start + 1, end).join('\n').trim();
-  }
-
-  function extractContactEmail(markdown) {
-    var match = markdown.match(/^📫\s*\*\*Contact:\*\*\s*(\S+)/m);
-    return match ? match[1].trim() : null;
-  }
-
-  function markListsStyled(container) {
-    container.querySelectorAll('ul').forEach(function (ul) { ul.classList.add('list'); });
-  }
-
-  fetch(README_URL)
-    .then(function (res) {
-      if (!res.ok) throw new Error('README fetch failed: ' + res.status);
-      return res.text();
-    })
-    .then(function (markdown) {
-      var researchMd = extractSection(markdown, '### 🔭 Research');
-      var researchEl = document.getElementById('research-dynamic');
-      if (researchMd && researchEl && window.marked) {
-        researchEl.innerHTML = marked.parse(researchMd);
-        markListsStyled(researchEl);
-      }
-
-      var email = extractContactEmail(markdown);
-      var contactEl = document.getElementById('contact-dynamic');
-      if (email && contactEl) {
-        contactEl.innerHTML = '<p>📫 <a href="mailto:' + email + '">' + email + '</a></p>';
-      }
-    })
-    .catch(function (err) {
-      console.warn('README sync skipped, showing static fallback:', err);
-    });
-})();
-</script>
+<script src="/assets/js/theme.js" defer></script>
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/render.js" defer></script>
 
 </body>
 </html>

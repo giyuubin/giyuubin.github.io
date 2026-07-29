@@ -1,0 +1,46 @@
+{
+  "name": "Kyubin Park",
+  "role": "Undergraduate Researcher",
+  "organizations": [
+    {
+      "name": "Information Security and Privacy Lab (ISPL)",
+      "url": "https://isnpl.github.io/"
+    },
+    {
+      "name": "Dept. of Smart Security, Gachon University",
+      "url": ""
+    }
+  ],
+  "avatar": "/assets/img/profile.jpg",
+  "initials": "KP",
+  "bio": [
+    "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Gachon University, where I study post-quantum cryptography and applied cryptography.",
+    "I run a seminar series on post-quantum cryptography following Prof. Alfred Menezes' Cryptography 101, and I take part in a project on trustworthy agentic AI. My interest sits where provable cryptographic guarantees meet systems that people actually have to trust.",
+    "I aspire to contribute to research institutes like ETRI."
+  ],
+  "interests": [
+    "Post-Quantum Cryptography",
+    "Applied Cryptography",
+    "Trustworthy AI"
+  ],
+  "education": [
+    {
+      "course": "B.S. in Smart Security",
+      "institution": "Gachon University",
+      "year": "2025 – Present"
+    }
+  ],
+  "social": [
+    {
+      "icon": "envelope",
+      "link": "mailto:giyuubin@gachon.ac.kr",
+      "label": "Email"
+    },
+    {
+      "icon": "github",
+      "link": "https://github.com/giyuubin",
+      "label": "GitHub"
+    }
+  ],
+  "email": "giyuubin@gachon.ac.kr"
+}

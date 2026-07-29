@@ -1,0 +1,20 @@
+[
+  {
+    "title": "ML-Based Static API Malware Detection System",
+    "summary": "Lightweight static pre-filter that classifies PE files via IAT-based features, intended to run ahead of heavier dynamic analysis.",
+    "note": "AI Programming coursework, Gachon University",
+    "date": "",
+    "tags": ["LightGBM", "Flask", "Python"],
+    "url_code": "https://github.com/giyuubin/ML-Based-Static-API-Malware-Detection-System",
+    "featured": true
+  },
+  {
+    "title": "Dodecaphonism",
+    "summary": "A twelve-tone (dodecaphonic) composition helper in Python — a small tool built outside of security work.",
+    "note": "Side project",
+    "date": "",
+    "tags": ["Python"],
+    "url_code": "https://github.com/giyuubin/Dodecaphonism",
+    "featured": true
+  }
+]
