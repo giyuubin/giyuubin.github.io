@@ -1,10 +1,5 @@
 [
   {
-    "title": "Joined the project <em>Development of Trustworthy Agentic AI Technologies for the Trust AI Ecosystem</em>.",
-    "date": "",
-    "url": ""
-  },
-  {
     "title": "Started a seminar series on Post-Quantum Cryptography, following Prof. Alfred Menezes' <em>Cryptography 101</em>.",
     "date": "2026-07-08",
     "url": "https://github.com/giyuubin/PQC"
@@ -13,6 +8,11 @@
     "title": "Completed a seminar series on Modern Cryptography.",
     "date": "2026-07-07",
     "url": "https://github.com/giyuubin/Modern-Cryptography"
+  },
+  {
+    "title": "Joined the project <em>Development of Trustworthy Agentic AI Technologies for the Trust AI Ecosystem</em>.",
+    "date": "2026-04-01",
+    "url": ""
   },
   {
     "title": "Joined the Information Security and Privacy Lab (ISPL) as an undergraduate researcher.",
