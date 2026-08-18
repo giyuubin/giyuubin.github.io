@@ -55,7 +55,12 @@
       toggle.setAttribute('aria-expanded', 'true');
       lockScroll();
       var firstLink = links.querySelector('a');
-      if (firstLink) firstLink.focus();
+      // preventScroll for the same reason unlockScroll forces behavior:
+      // 'instant' — html has a global scroll-behavior: smooth, and .nav is
+      // sticky rather than fixed, so letting focus() scroll its target into
+      // view animates the page away from where the reader left it. Nothing here
+      // needs scrolling to anyway: the panel is position: fixed.
+      if (firstLink) firstLink.focus({ preventScroll: true });
     }
 
     function close(returnFocus) {
@@ -64,7 +69,10 @@
       backdrop.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
       unlockScroll();
-      if (returnFocus) toggle.focus();
+      // Must not scroll: this runs immediately after unlockScroll has put the
+      // reader back where they were, and a scroll-into-view here would animate
+      // them straight back off it.
+      if (returnFocus) toggle.focus({ preventScroll: true });
     }
 
     toggle.addEventListener('click', function () {

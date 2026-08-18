@@ -802,6 +802,13 @@ code {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
+    /* Opening has to flip visibility synchronously. nav.js focuses the first
+       link the instant `.is-open` is added, and focus() is silently a no-op
+       while the panel is still `visibility: hidden` — the delay above left the
+       menu open with focus stranded on the toggle. Closing still uses the 0.2s
+       from the rule above, so the panel stays focusable and in the a11y tree
+       until the fade has finished. */
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
   }
 
   .nav-links a {
