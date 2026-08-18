@@ -94,12 +94,25 @@
     return document.getElementById(id);
   }
 
+  /* Remove a collection's nav link wherever it appears. The home page links its
+     sections as anchors ("#publications"); the list pages link the same entries
+     as paths ("/publications/"). Both forms have to go or the nav changes shape
+     as you move around the site — an empty collection stays hidden on the home
+     page but its link is still sitting there on /news/ and /projects/. */
+  function dropNavLink(id) {
+    var links = document.querySelectorAll(
+      '.nav-links a[href="#' + id + '"], .nav-links a[href="/' + id + '/"]'
+    );
+    Array.prototype.forEach.call(links, function (link) {
+      if (link.parentNode) link.parentNode.removeChild(link);
+    });
+  }
+
   /* Remove a section and the nav link that points at it. */
   function dropSection(id) {
     var section = el(id);
     if (section && section.parentNode) section.parentNode.removeChild(section);
-    var link = document.querySelector('.nav-links a[href="#' + id + '"]');
-    if (link && link.parentNode) link.parentNode.removeChild(link);
+    dropNavLink(id);
   }
 
   /* ---------------------------------------------------------------- pieces */
@@ -471,16 +484,38 @@
     });
   }
 
+  var COLLECTIONS = ['news', 'publications', 'projects'];
+
   function renderListPage(collection) {
     var host = el('page-list');
     var empty = el('page-empty');
 
-    return Promise.all([
-      fetchJSON('profile.json'),
-      fetchJSON(collection + '.json')
-    ]).then(function (results) {
+    /* Every collection is fetched, not just this page's, so the nav can be
+       pruned the same way the home page prunes it. They are a few hundred bytes
+       each and already cached from the home page in the common case. */
+    return Promise.all(
+      [fetchJSON('profile.json')].concat(
+        COLLECTIONS.map(function (name) {
+          return fetchJSON(name + '.json');
+        })
+      )
+    ).then(function (results) {
       renderFooterYear(results[0]);
-      var items = results[1] || [];
+
+      var byName = {};
+      COLLECTIONS.forEach(function (name, i) {
+        byName[name] = results[i + 1] || [];
+      });
+
+      /* Keep the nav identical to the home page's: a collection with no entries
+         has no link anywhere, including the link to the page you are standing
+         on. That page is still reachable by URL and explains itself with its
+         empty state, so nothing is stranded. */
+      COLLECTIONS.forEach(function (name) {
+        if (!byName[name].length) dropNavLink(name);
+      });
+
+      var items = byName[collection] || [];
 
       if (!items.length) {
         if (host) host.style.display = 'none';
