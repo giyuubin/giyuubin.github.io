@@ -192,16 +192,25 @@
       ticking = false;
       if (Date.now() < suppressUntil) return;
 
-      var atBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 2;
+      var maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      var atBottom = window.scrollY >= maxScroll - 2;
       if (atBottom) {
-        // On short mobile viewports the page can already be "at bottom" as soon
-        // as an earlier section is reached, since there is little content left
-        // below it. Only force the last link active once its section has
-        // actually scrolled up past the viewport's centre.
+        // A trailing section is usually short and sits hard against the end of
+        // the document, so at maximum scroll its midpoint is stuck below the
+        // viewport centre and the midpoint rule below can never pick it — the
+        // last nav item would be unreachable at every scroll position. Being at
+        // the bottom is the only chance it gets, so take it.
+        //
+        // The guard is still needed: on a page barely taller than the viewport,
+        // "at bottom" happens while an early section still fills the screen, and
+        // forcing the last link active there is wrong. That is a property of how
+        // much scroll room exists, so test that directly. The previous check
+        // (last section's top above innerHeight / 2) tested viewport height
+        // instead, and could not pass above a 612px-tall viewport — i.e. never
+        // on a desktop browser.
         var lastSection = sections[sections.length - 1];
-        if (lastSection.getBoundingClientRect().top <= window.innerHeight / 2) {
+        if (maxScroll >= window.innerHeight / 2) {
           setActive(navLinkByHash[lastSection.id]);
           return;
         }
