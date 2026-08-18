@@ -15,8 +15,7 @@
   "initials": "KP",
   "bio": [
     "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Gachon University, where I study post-quantum cryptography and applied cryptography.",
-    "I run a seminar series on post-quantum cryptography following Prof. Alfred Menezes' Cryptography 101, and I take part in a project on trustworthy agentic AI. My interest sits where provable cryptographic guarantees meet systems that people actually have to trust.",
-    "I aspire to contribute to research institutes like ETRI."
+    "I also take part in a project on trustworthy agentic AI. My interest sits where provable cryptographic guarantees meet systems that people actually have to trust, and I hope to pursue that line of work at a research institute such as ETRI."
   ],
   "interests": [
     "Post-Quantum Cryptography",
