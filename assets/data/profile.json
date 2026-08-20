@@ -14,8 +14,8 @@
   "avatar": "/assets/img/profile.jpg",
   "initials": "KP",
   "bio": [
-    "Cryptography is one of the few places in security where a guarantee can be proved rather than argued.",
-    "I am interested in what survives the trip from that proof to a system people actually depend on, and I hope to keep working on that at a research institute such as ETRI."
+    "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Department of Smart Security, Gachon University. I work on post-quantum and applied cryptography, and take part in a project on trustworthy agentic AI.",
+    "Cryptography is one of the few places in security where a guarantee can be proved rather than argued. What interests me — in the cryptography and the agentic AI work alike — is what survives the trip from that proof to a system people actually depend on, and I hope to keep working on that at a research institute such as ETRI."
   ],
   "interests": [
     "Post-Quantum Cryptography",
