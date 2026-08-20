@@ -408,18 +408,27 @@ code {
 .hero {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  padding: 3.5rem 0 var(--section-gap);
+  gap: 3rem;
+  padding: 4.5rem 0 var(--section-gap);
 }
 
+/* Hairline only, drawn as a shadow rather than a border so it sits outside the
+   circle without shrinking the image.
+
+   Deliberately not a wider ring: profile.jpg is a blue disc on a white square,
+   and the disc is inset about 6% of the radius, so clipping the square to a
+   circle already leaves a white band ~12px wide at this size. That band is the
+   mat. Stacking a --surface ring on top of it gave a double rim that read as a
+   hard white outline in dark mode. If the photo is ever recropped so the disc
+   reaches the edge, a wider ring becomes available again. */
 .hero-avatar {
   flex: 0 0 auto;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   background: var(--bg-muted);
-  border: 1px solid var(--border);
+  box-shadow: 0 0 0 1px var(--border);
 }
 
 .hero-avatar img {
@@ -435,7 +444,8 @@ code {
   justify-content: center;
   width: 100%;
   height: 100%;
-  font-size: 3rem;
+  font-family: var(--font-serif);
+  font-size: 3.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--primary);
@@ -478,32 +488,35 @@ code {
 
 .hero-social {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
+/* Filled against the tinted page rather than outlined against white, so the
+   buttons read as controls instead of faint rings. */
 .hero-social a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 1px solid var(--border);
   border-radius: 50%;
+  background: var(--surface);
   color: var(--text-muted);
   transition: color 0.15s ease, border-color 0.15s ease,
     background-color 0.15s ease;
 }
 
 .hero-social a:hover {
-  color: var(--primary);
+  color: var(--on-primary);
   border-color: var(--primary);
-  background: var(--primary-subtle);
+  background: var(--primary);
   text-decoration: none;
 }
 
 .hero-social svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -933,13 +946,17 @@ code {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.5rem;
-    padding-top: 2.5rem;
+    gap: 1.75rem;
+    padding-top: 3rem;
   }
 
   .hero-avatar {
-    width: 128px;
-    height: 128px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .hero-avatar-initials {
+    font-size: 2.75rem;
   }
 
   .hero-name {
