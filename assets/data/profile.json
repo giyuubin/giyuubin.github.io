@@ -14,8 +14,8 @@
   "avatar": "/assets/img/profile.jpg",
   "initials": "KP",
   "bio": [
-    "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Gachon University, where I study post-quantum cryptography and applied cryptography.",
-    "I also take part in a project on trustworthy agentic AI. My interest sits where provable cryptographic guarantees meet systems that people actually have to trust, and I hope to pursue that line of work at a research institute such as ETRI."
+    "Cryptography is one of the few places in security where a guarantee can be proved rather than argued.",
+    "I am interested in what survives the trip from that proof to a system people actually depend on, and I hope to keep working on that at a research institute such as ETRI."
   ],
   "interests": [
     "Post-Quantum Cryptography",

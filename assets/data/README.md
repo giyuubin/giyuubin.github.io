@@ -31,6 +31,11 @@ Array, one object per item.
 | `date`  | `YYYY-MM-DD`. May be `""` — the item renders without a date.   |
 | `url`   | Optional. Makes the item a link.                               |
 
+**HTML entities do not work.** `richText()` in `render.js` escapes `&` before it
+re-enables the three tags above, so `&mdash;` reaches the page as the literal
+text `&mdash;`. Type the character itself — `—`, `·`, `→`. The same applies to
+every other rich-text field on this page.
+
 Sorted newest first. Undated items sink to the bottom rather than floating to
 the top, so an entry with no date never claims to be the latest news.
 
