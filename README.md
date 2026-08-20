@@ -2,8 +2,8 @@
 
 Source for my personal site: **[giyuubin.github.io](https://giyuubin.github.io)**
 
-Academic-style personal page, modelled on the
-[ISNP Lab site](https://isnpl.github.io/).
+Academic-style personal page: single column, generous whitespace, light/dark
+theme.
 
 ## Stack
 
