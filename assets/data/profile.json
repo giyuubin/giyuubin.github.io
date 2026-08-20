@@ -14,7 +14,8 @@
   "avatar": "/assets/img/profile.jpg",
   "initials": "KP",
   "bio": [
-    "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Department of Smart Security, Gachon University. I work on post-quantum and applied cryptography, and take part in a project on trustworthy agentic AI.",
+    "I am an undergraduate researcher at the Information Security and Privacy Lab (ISPL), Department of Smart Security, Gachon University.",
+    "My research interests include post-quantum and applied cryptography. I also take part in a project on trustworthy agentic AI.",
     "After my degree I hope to continue this work at a research institute such as ETRI."
   ],
   "interests": [
