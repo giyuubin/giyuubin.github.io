@@ -131,8 +131,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Column layout so the footer can be pushed to the bottom of the viewport on
+   short pages. Without it /publications/ (an empty state, a few lines long)
+   left its footer rule floating mid-screen above a large blank area.
+   .skip-link and .nav-backdrop are absolute/fixed, so the only flex children
+   in flow are the nav, the content container and the footer. */
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -836,6 +845,9 @@ code {
    7. Footer
    -------------------------------------------------------------------------- */
 .footer {
+  /* Takes up the slack from the body flex column, so a short page still puts
+     the footer rule at the bottom of the screen rather than mid-viewport. */
+  margin-top: auto;
   border-top: 1px solid var(--border);
   padding: 2rem 0 3rem;
   font-size: var(--text-meta);
